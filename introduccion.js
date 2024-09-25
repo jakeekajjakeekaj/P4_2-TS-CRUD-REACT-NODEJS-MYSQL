@@ -31,3 +31,19 @@
 
 // register('ts-node/esm', pathToFileURL('./'));
 // y listo, esto solo es necesario si deseamos usar el import en vez del require, sin embargo se preguntará para ver si es necesario tanto, o si mejor usamos el require
+
+// *** AL FINAL MANEJAREMOS index.js en vez de .ts, queda comprobado que en proyectod grandes si usan al index como js y no solo eso, sino que al parecer si es buena práctica usar js en vez de ts ***
+
+// *** AL FINAL FINAL SI MANEJAREMOS TODO CON TS, PERO SERÁ DIFERENTE, MODIFICAMOS NUESTRO package.json quitando el "module": "type" y aparte instalamos @types/cors, aparte creamos un tsc con esta configuración:
+// {
+//   "compilerOptions": {
+//     "target": "es6",
+//     "module": "commonjs",
+//     "strict": true,
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "outDir": "./dist"
+//   }
+// }
+// y listo, a su vez para evitar tener problemas, ya no mencionaremos las extensiones .ts, ya que de incluirlas en los import, nos podría generar algunos problemas y se tendrían que hacer más movimientos que realmente no es tan necesario
