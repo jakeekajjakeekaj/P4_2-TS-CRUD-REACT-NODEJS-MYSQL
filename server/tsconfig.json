@@ -1,11 +1,20 @@
 {
   "compilerOptions": {
+    // especifica la version de JS
     "target": "es6",
+    // "commonjs" es el sistema de módulos utilizado principalmente en Node.js. Permite importar y exportar módulos usando require y module.exports
     "module": "commonjs",
     "strict": true,
+    // Cuando está habilitado, puedes importar módulos CommonJS utilizando la sintaxis de importación de ES6, lo que facilita la transición y el uso de bibliotecas de ambos tipos.
     "esModuleInterop": true,
+    // Omite la verificación de tipo en archivos de declaración (.d.ts).
+    // Esto puede mejorar los tiempos de compilación, especialmente en proyectos grandes, ya que no revisa todas las bibliotecas externas.
     "skipLibCheck": true,
+    // Garantiza que el uso de nombres de archivo sea consistente en todo el proyecto.
+    // Por ejemplo, si tienes un archivo llamado miArchivo.ts, no podrás importarlo como MiArchivo.ts, ya que eso se consideraría un error debido a la diferencia de mayúsculas y minúsculas.
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist"
+    // Especifica el directorio de salida donde se generarán los archivos JavaScript compilados.
+    // En tu caso, "./dist" significa que los archivos compilados se guardarán en la carpeta dist en el directorio raíz del proyecto.
+    // "outDir": "./dist"
   }
 }
