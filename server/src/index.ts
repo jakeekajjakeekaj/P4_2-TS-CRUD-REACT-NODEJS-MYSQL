@@ -47,15 +47,20 @@ app.post("/api/create/employee", async(req: Request, res: Response)=> {
 
     // VALIDACIONES DE CONVERSIONES
 
-    if (isNaN(age)) {
-      console.log("PASA VALIDACION DE AGE ES STRING");
-      return res.status(400).send({ error: "asegurate de que age sea un numero" });
+    console.log(typeof(age) + isNaN(age));
+    // if (!isNaN(age)) {
+    //   console.log("PASA VALIDACION DE AGE ES STRING");
+    //   return res.status(400).send({ error: "asegurate de que age sea un numero" });
+    // }
+    if(typeof(age) === 'string' || typeof(years) === 'string') {
+      return res.status(400).send({ error: "Asegurate de que age o years sea un numero" });
     }
 
-    if (isNaN(years)) {
-      console.log("PASA VALIDACION DE AGE ES STRING");
-      return res.status(400).send({ error: "asegurate de que years sea un numero" });
-    }
+    console.log(isNaN(years));
+    // if (!isNaN(years)) {
+    //   console.log("PASA VALIDACION DE AGE ES STRING");
+    //   return res.status(400).send({ error: "asegurate de que years sea un numero" });
+    // }
     
   
     const employee = await createEmployee(name, age, country, charge, years);

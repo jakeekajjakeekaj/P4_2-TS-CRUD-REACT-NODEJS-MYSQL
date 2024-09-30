@@ -171,8 +171,8 @@ export const useEmployees = () => {
     if (error && (error as AxiosError).response) {
       // Errores del servidor
       const axiosError = error as AxiosError;
-      const data = axiosError.response?.data as { message?: string };
-      detailedError = data.message || data || 'Error del servidor';
+      const data = axiosError.response?.data as { error?: string };
+      detailedError = data?.error || 'Error del servidor';
     } else if (error && (error as AxiosError).request) {
       // Errores de red o falta de respuesta del servidor
       detailedError = "No se pudo contactar al servidor. Por favor, intente más tarde.";
