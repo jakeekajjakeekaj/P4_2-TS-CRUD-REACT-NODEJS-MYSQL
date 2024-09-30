@@ -52,8 +52,14 @@ app.post("/api/create/employee", async(req: Request, res: Response)=> {
     //   console.log("PASA VALIDACION DE AGE ES STRING");
     //   return res.status(400).send({ error: "asegurate de que age sea un numero" });
     // }
-    if(typeof(age) === 'string' || typeof(years) === 'string') {
-      return res.status(400).send({ error: "Asegurate de que age o years sea un numero" });
+    // if(typeof(age) === 'string' || typeof(years) === 'string') {
+    //   return res.status(400).send({ error: "Asegurate de que age o years sea un numero" });
+    // }
+    // Validación adicional si es necesario
+    if (typeof name !== 'string' || 
+      typeof age !== 'number' || typeof country !== 'string' || 
+      typeof charge !== 'string' || typeof years !== 'number') {
+      return res.status(400).send({ error: "Formato de datos incorrecto" });
     }
 
     console.log(isNaN(years));
@@ -80,7 +86,8 @@ app.put("/api/update/employee", async(req: Request, res: Response)=> {
     const { id, name, age, country, charge, years } = req.body;
 
     // Validación básica de los datos
-    if (!id || !name || !age || !country || !charge || !years) {
+    if (!name || (!age && age !== 0) || !country || !charge || !age) {
+      console.log("se entra a la validacion back");
       return res.status(400).send({ error: "Todos los campos son obligatorios" });
     }
 

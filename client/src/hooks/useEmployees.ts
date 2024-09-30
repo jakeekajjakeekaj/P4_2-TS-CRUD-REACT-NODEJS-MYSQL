@@ -60,7 +60,7 @@ export const useEmployees = () => {
     }
 
     // Validar campos vacíos
-    if (!employeeData.name || !employeeData.age || !employeeData.country || !employeeData.charge) {
+    if (!employeeData.name || !employeeData.age || !employeeData.country || !employeeData.charge || !employeeData.years) {
       console.log("campo vacio");
       MySwal.fire({
         title: "Error",
@@ -72,11 +72,11 @@ export const useEmployees = () => {
     }
 
     // Validar que la edad y años de experiencia sean mayores a 0
-    console.log("1: " + typeof(employeeData.age));
+    // console.log("1: " + typeof(employeeData.age));
     if (Number(employeeData.age) <= 0 || Number(employeeData.years) < 0) {
       MySwal.fire({
         title: "Error",
-        text: "La edad y los años de experiencia deben ser mayores que 0.",
+        text: "La edad debe ser mayor que 0 y los años positivos.",
         icon: "error",
         timer: 3500
       });
@@ -86,10 +86,16 @@ export const useEmployees = () => {
     return true; // Formulario válido
   }, [MySwal]);
 
+  const convertToNumber = (currentEmployee : string | number)=> {
+    return Number(currentEmployee);
+  }
+
   const addNewEmployee = useCallback(async () => {
     try {
-      currentEmployee.age = Number(currentEmployee.age);
-      currentEmployee.years = Number(currentEmployee.years);
+      // currentEmployee.age = Number(currentEmployee.age);
+      // currentEmployee.years = Number(currentEmployee.years);
+      currentEmployee.age = convertToNumber(currentEmployee.age);
+      currentEmployee.years = convertToNumber(currentEmployee.years);
       console.log("age " + typeof(currentEmployee.age));
       await addEmployee(currentEmployee);
       fetchAllEmployees();
@@ -107,6 +113,8 @@ export const useEmployees = () => {
 
   const updateEmployee = useCallback(async (currentEmployee: Employee) => {
     try {
+      currentEmployee.age = convertToNumber(currentEmployee.age);
+      currentEmployee.years = convertToNumber(currentEmployee.years);
       await modifyEmployee(currentEmployee);
       fetchAllEmployees();
       setEdit(false);
