@@ -4,9 +4,9 @@ import { useEffect } from 'react';
 
 export default function EmployeeList ({ employees, editEmp, deleteEmp }: EmployeeListProps) {
 
-  useEffect(()=> {
-    console.log("Employees: ", employees);
-  }, [employees]);
+  // useEffect(()=> {
+  //   console.log("Employees: ", employees);
+  // }, [employees]);
 
   return (
     <table className="table table-striped box-clamp">

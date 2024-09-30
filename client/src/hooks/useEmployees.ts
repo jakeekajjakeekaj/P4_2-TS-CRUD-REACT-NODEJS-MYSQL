@@ -45,6 +45,7 @@ export const useEmployees = () => {
   // Función centralizada para validar el formulario
   const isFormValid = useCallback((employeeData: Employee, originalEmployee: Employee | null = null): boolean => {
     // Validar que los datos no sean iguales al empleado original en caso de edición
+    console.log("Pasa validacion");
     if (originalEmployee) {
       if (
         employeeData.name === originalEmployee.name &&
@@ -53,12 +54,14 @@ export const useEmployees = () => {
         employeeData.charge === originalEmployee.charge &&
         employeeData.years === originalEmployee.years
       ) {
+        console.log("no se hacen cambios");
         return true; // No se hicieron cambios
       }
     }
 
     // Validar campos vacíos
-    if (!employeeData.name || !employeeData.age || !employeeData.country || !employeeData.charge || !employeeData.years) {
+    if (!employeeData.name || !employeeData.age || !employeeData.country || !employeeData.charge) {
+      console.log("campo vacio");
       MySwal.fire({
         title: "Error",
         text: "Por favor, completa todos los campos.",
@@ -69,6 +72,7 @@ export const useEmployees = () => {
     }
 
     // Validar que la edad y años de experiencia sean mayores a 0
+    console.log("1: " + typeof(employeeData.age));
     if (Number(employeeData.age) <= 0 || Number(employeeData.years) < 0) {
       MySwal.fire({
         title: "Error",
@@ -84,6 +88,9 @@ export const useEmployees = () => {
 
   const addNewEmployee = useCallback(async () => {
     try {
+      currentEmployee.age = Number(currentEmployee.age);
+      currentEmployee.years = Number(currentEmployee.years);
+      console.log("age " + typeof(currentEmployee.age));
       await addEmployee(currentEmployee);
       fetchAllEmployees();
       clearFields();
@@ -148,9 +155,9 @@ export const useEmployees = () => {
 
   const fetchAllEmployees = useCallback(async () => {
     try {
-      console.log("Pasa el all fetch");
+      // console.log("Pasa el all fetch");
       const res = await fetchEmployees();
-      console.log(res);
+      // console.log(res);
       setEmployees(res.data);
     } catch (error) {
       showError(error, "Error al obtener los usuarios");

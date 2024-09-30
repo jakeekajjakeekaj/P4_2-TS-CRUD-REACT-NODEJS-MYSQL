@@ -17,7 +17,7 @@ export interface EmployeeFormProps {
   charge: string;
   setCharge: (value: string) => void;
   years: string | number;
-  setYears: (value: number) => void;
+  setYears: (value: string | number) => void;
   edit: boolean;
   handleSubmit: (event: React.FormEvent) => void;
   handleCancel: () => void;

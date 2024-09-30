@@ -3,7 +3,6 @@ import './App.css';
 import EmployeeList from './components/EmployeeList.jsx';
 import EmployeeForm from './components/EmployeeForm.jsx';
 import { useEmployees } from './hooks/useEmployees';
-import { Employee } from './types/types.js';
 
 export default function App() {
 

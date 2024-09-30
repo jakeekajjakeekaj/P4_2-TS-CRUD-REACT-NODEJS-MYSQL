@@ -18,6 +18,7 @@ export const getEmployees = (): Promise<AxiosResponse> => {
   return Axios.get(`${API_URL}/get/employees`)};
 
 export const createEmployee = (employee: Employee): Promise<AxiosResponse> => {
+  console.log(`Se procede a la API ${typeof(employee.name)} ${employee.name} ${typeof(employee.age)} ${employee.age} ${typeof(employee.country)} ${employee.country} ${typeof(employee.charge)} ${employee.charge} ${typeof(employee.years)} ${employee.years}`);
   return Axios.post(`${API_URL}/create/employee`, employee)};
 
 export const updateEmployee = (employee: Employee): Promise<AxiosResponse> => {

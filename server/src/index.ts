@@ -33,17 +33,36 @@ app.get("/api/get/employees", async(req: Request, res: Response)=> {
 
 app.post("/api/create/employee", async(req: Request, res: Response)=> {
   try {
+    console.log("del back pasa al try");
     const { name, age, country, charge, years } = req.body;
+    console.log(`DESPUES AGE: ${typeof(age)} YEARS: ${typeof(years)}`);
 
     // Validación básica de los datos
-    if (!name || !age || !country || !charge || !years) {
+    if (!name || (!age && age !== 0) || !country || !charge || !age) {
+      console.log("se entra a la validacion back");
       return res.status(400).send({ error: "Todos los campos son obligatorios" });
     }
+
+    console.log("Pasa validacion back de datos obligatorios");
+
+    // VALIDACIONES DE CONVERSIONES
+
+    if (isNaN(age)) {
+      console.log("PASA VALIDACION DE AGE ES STRING");
+      return res.status(400).send({ error: "asegurate de que age sea un numero" });
+    }
+
+    if (isNaN(years)) {
+      console.log("PASA VALIDACION DE AGE ES STRING");
+      return res.status(400).send({ error: "asegurate de que years sea un numero" });
+    }
+    
   
     const employee = await createEmployee(name, age, country, charge, years);
-    // console.log("SQL EJECUTADO");
+    console.log("SQL EJECUTADO");
     res.status(201).send(employee);
   } catch(err) {
+    console.log("Del back no pasa el try");
     console.log(err);
     res.status(500).send({ error: "Internal Server Error" });
   }
