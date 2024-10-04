@@ -17,6 +17,6 @@ app.use(cors(corsOptions));
 app.use('/api', employeeRoutes);
 
 // Middleware de manejo de errores
-// app.use(errorHandler);
+app.use(errorHandler);
 
 export default app;
