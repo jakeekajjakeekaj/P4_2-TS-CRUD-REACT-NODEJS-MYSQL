@@ -30,7 +30,7 @@ export const useEmployees = () => {
     if (edit) {
       const originalEmployee = employees.find(emp => emp.id === currentEmployee.id);
       if (isFormValid(currentEmployee, originalEmployee)) {
-        updateEmployee(currentEmployee);
+        updateEmployee(currentEmployee.id, currentEmployee);
       }
     } else {
       if (isFormValid(currentEmployee)) addNewEmployee();
@@ -111,11 +111,11 @@ export const useEmployees = () => {
     }
   }, [currentEmployee]);
 
-  const updateEmployee = useCallback(async (currentEmployee: Employee) => {
+  const updateEmployee = useCallback(async (id: number, currentEmployee: Employee) => {
     try {
       currentEmployee.age = convertToNumber(currentEmployee.age);
       currentEmployee.years = convertToNumber(currentEmployee.years);
-      await modifyEmployee(currentEmployee);
+      await modifyEmployee(id, currentEmployee);
       fetchAllEmployees();
       setEdit(false);
       clearFields();

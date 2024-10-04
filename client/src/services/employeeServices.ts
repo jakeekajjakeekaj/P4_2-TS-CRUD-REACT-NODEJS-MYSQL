@@ -15,14 +15,14 @@ const API_URL = 'http://localhost:3000/api';
 // }
 
 export const getEmployees = (): Promise<AxiosResponse> => {
-  return Axios.get(`${API_URL}/get/employees`)};
+  return Axios.get(`${API_URL}/employees`)};
 
 export const createEmployee = (employee: Employee): Promise<AxiosResponse> => {
   console.log(`Se procede a la API ${typeof(employee.name)} ${employee.name} ${typeof(employee.age)} ${employee.age} ${typeof(employee.country)} ${employee.country} ${typeof(employee.charge)} ${employee.charge} ${typeof(employee.years)} ${employee.years}`);
-  return Axios.post(`${API_URL}/create/employee`, employee)};
+  return Axios.post(`${API_URL}/employee`, employee)};
 
-export const updateEmployee = (employee: Employee): Promise<AxiosResponse> => {
-return Axios.put(`${API_URL}/update/employee`, employee)};
+export const updateEmployee = (id: number, employee: Employee): Promise<AxiosResponse> => {
+return Axios.put(`${API_URL}/employee/${id}`, employee)};
 
 export const deleteEmployee = (id: number): Promise<AxiosResponse> => {
-return Axios.delete(`${API_URL}/delete/employee/${id}`)};
+return Axios.delete(`${API_URL}/employee/${id}`)};
