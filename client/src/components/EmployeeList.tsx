@@ -1,6 +1,5 @@
 import EmployeeRow from './EmployeeRow';
 import { EmployeeListProps } from '../types/types';
-import { useEffect } from 'react';
 
 export default function EmployeeList ({ employees, editEmp, deleteEmp }: EmployeeListProps) {
 
